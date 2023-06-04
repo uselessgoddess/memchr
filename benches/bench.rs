@@ -2,7 +2,7 @@ use criterion::measurement::Measurement;
 use criterion::{
     criterion_group, criterion_main, BenchmarkGroup, Criterion, PlottingBackend, Throughput,
 };
-use memchr::{libc, memchr_count, naive};
+use memchr::{gpt, libc, memchr_count, naive};
 use std::time::Duration;
 
 #[non_exhaustive]
@@ -33,6 +33,7 @@ fn all_input(c: &mut Criterion, name: &str, input: Input) {
         .measurement_time(Duration::from_secs(2));
 
     define(&mut group, "naive", input, naive::memchr);
+    define(&mut group, "gpt", input, gpt::memchr);
     define(&mut group, "libc", input, libc::memchr);
 }
 

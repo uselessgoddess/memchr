@@ -12,3 +12,7 @@ criterion = { version = "0.4.0" }
 [[bench]]
 name = "bench"
 harness = false
+
+[profile.bench]
+codegen-units = 1
+lto = "fat"
